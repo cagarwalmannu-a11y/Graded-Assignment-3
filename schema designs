@@ -1,0 +1,20 @@
+CREATE TABLE students (
+    student_id INTEGER NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL
+);
+
+CREATE TABLE courses (
+    course_id INTEGER NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    credits INTEGER NOT NULL CHECK (credits > 0)
+);
+
+CREATE TABLE enrollments (
+    enrollment_id INTEGER NOT NULL PRIMARY KEY,
+    student_id INTEGER NOT NULL,
+    course_id INTEGER NOT NULL,
+    grade TEXT,
+    FOREIGN KEY (student_id) REFERENCES students (student_id),
+    FOREIGN KEY (course_id) REFERENCES courses (course_id)
+);
